@@ -1,0 +1,546 @@
+@import "variables";
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+}
+body{
+    background: rgba($color: #000000, $alpha: 0.7);
+}
+.wrapper{
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    background: $wrapperDayBg;
+    overflow: hidden;
+
+    #sun-moon-orbit{
+        position: absolute;
+        width: 100%;
+        height: 200%;
+        border-radius: 50%;
+        z-index: 2;
+        top: 100%;
+        left: 50%;
+        transform: translate(-50%, -50%) rotate(0deg);
+        .sun{
+            z-index: 2;
+            position: absolute;
+            width: 12rem;
+            height: 12rem;
+            top: 50%;
+            left: 0%;
+            transform: translate(0%, -50%);
+            border-radius: 50%;
+            background-size: 120%;
+            background-position: center;
+            background-image: url(/assets/icons/svg_weathor_icon_color/clear_day.svg);
+            box-shadow: 0 0 50px 40px rgba($sun, $alpha: 1);
+        }
+        .sun-light{
+            position: absolute;
+            width: 24rem;
+            height: 24rem;
+            top: 50%;
+            left: 0;
+            transform: translate(-25%, -50%);
+            border-radius: 50%;
+            background-color: rgba($sun, $alpha: 0.5);
+            backdrop-filter: blur(2px);
+            box-shadow: 0 0 150px 300px rgba($sun, $alpha: 0.5);
+        }
+        .moon{
+            z-index: 2;
+            position: absolute;
+            width: 12rem;
+            height: 12rem;
+            top: 50%;
+            right: 0;
+            transform: translate(0%, -50%) rotate(-200deg);
+            border-radius: 50%;
+            background-size: 120%;
+            background-position: center;
+            background-image: url(/assets/icons/svg_weathor_icon_color/clear_night.svg);
+            box-shadow: 0 0 50px 40px rgba($moon, $alpha: 1);
+        }
+        .moon-light{
+            position: absolute;
+            width: 24rem;
+            height: 24rem;
+            top: 50%;
+            right: 0;
+            transform: translate(25%, -50%);
+            border-radius: 50%;
+            backdrop-filter: blur(2px);
+            background-color: rgba($moon, $alpha: 0.5);
+            box-shadow: 0 0 150px 300px rgba($moon, $alpha: 0.5);
+        }
+    }
+    .mountain{
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        z-index: 3;
+        bottom: 0;
+        img{
+            z-index: 1;
+            width: 100%;
+            height: 100%;
+            // filter: $mountainBrightness;
+        }
+    }
+    .forest{
+        position: absolute;
+        bottom: 0;
+        z-index: 4;
+        width: 100%;
+        height: 40vh;
+        background-image: url(/assets/icons/design/forest.png);
+        background-repeat: repeat-x;
+        background-size: 60%;
+        background-position: bottom;
+    }
+    @keyframes wave {
+        0%{
+            transform: translateX(-100px);
+        }
+        50%{
+            transform: translateX(100px);
+        }
+        100%{
+            transform: translateX(-100px);
+        }
+    }
+}
+.effects{
+    filter: brightness(90%);
+    position: absolute;
+    z-index: 5;
+    width: 100%;
+    height: 20vh;
+    overflow: hidden;
+    bottom: -6vh;
+    .waves{
+        position: absolute;
+        bottom: 0;
+        z-index: 1;
+        width: 120%;
+        height: 15vh;
+        background-image: url(/assets/icons/design/wave2.png);
+        background-repeat: repeat-x;
+        background-size: 20%;
+        background-position: center;
+        opacity: 0.9;
+        transition: 0.3s;
+        left: -100px;
+        will-change: transform;
+        animation: wave 15s infinite linear;
+    }
+    
+    .fog{
+        position: absolute;
+        bottom: +1vh;
+        z-index: 2;
+        width: 120%;
+        height: 20vh;
+        background-image: url(/assets/icons/design/fog3.png);
+        background-repeat: repeat-x;
+        background-position: center;
+        background-size: 30%;
+        opacity: 0.8;
+        left: -100px;
+        will-change: transform;
+        animation: wave 25s infinite linear;
+    }
+}
+.wrapper2{
+    filter: brightness(70%);
+    position: absolute;
+    top: 100%;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    background: $wrapper2Bg;
+    .underwater{        
+        width: 100%;
+        height: 200%;
+        transform: translateY(-30rem);
+        background-image: url(/assets/icons/design/underwater.png);
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+}
+.container{
+    width: 60rem;
+    height: auto;
+    position: absolute;
+    top: 15%;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    border: 2px solid $containerBorder;
+    background: $containerBg;
+    border-radius: 10px;
+    overflow: hidden;
+    z-index: 50;
+    backdrop-filter: blur(10px);
+    header{
+        width: 100%;
+        height: 3rem;
+        border-bottom: 2px solid $headerBorder;
+        nav{
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: space-between; 
+            align-items: center;
+            padding: 0 1rem;
+            h1{
+                font-size: 2rem;
+                font-weight: 600;
+                color: $fontColor;
+            }
+            button{
+                background: none;
+                border: none;
+                &:hover{
+                    cursor: pointer;
+                }
+            }   
+            .search-wrapper{
+                position: absolute;
+                display: flex;
+                flex-direction: column;
+                width: 40%;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
+                transition: 0.3s;
+                border: 1px solid $searchBorder;
+                border-radius: 10px;
+                .search-input{
+                    height: 2rem;
+                    display: flex;
+                    justify-content: space-between;
+                    input{
+                        width: 100%;
+                        height: 2rem;
+                        padding: 0 15px;
+                        font-size: 1.1rem;
+                        font-weight: 550;
+                        border-radius: 10px;
+                        border: none;
+                        outline: none;
+                        background: $searchBg;
+                        &:focus{
+                            outline: 3px solid $searchFocusOutline;
+                        }
+                    }
+                    
+                    button{
+                        position: absolute;
+                        top: 50%;
+                        right: 10px;
+                        transform: translateY(-50%);
+                        width: 1.5rem;
+                        height: 1.5rem;
+                        border: none;
+                        img{
+                            width: 100%;
+                            transition: 0.3s;
+                            &:hover{
+                                scale: 1.1;
+                            }
+                        }
+                    }
+                }
+                #suggestions-container{
+                    margin-top: 0.1rem;
+                    position: absolute;
+                    top: 2.1rem;
+                    width: 100%;
+                    z-index: 10;
+                    border-radius: 5px;
+                    cursor: pointer;
+                    background-color: $suggestionsContainerBg;
+                    .suggestion-item{
+                        margin: 0.3rem 0;
+                        height: 1.5rem;
+                        border-radius: 5px;
+                        padding: 0 1rem;
+                        &:hover{
+                            background: $suggestionBg;
+                        }
+                    }
+                }
+                &:hover{
+                    left: 50%;
+                    top: 50%;
+                    transform: translate(-50%, -50%) scale(1.05);
+                }
+            }
+            .mode-buttons{
+                width: 15%;
+                height: 50%;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                .unit-change{
+                    width: 30%;
+                    height: 100%;
+                    select{
+                        width: 100%;
+                        height: 100%;
+                        cursor: pointer;
+                        option{
+                            cursor: pointer;
+                        }
+                    }
+                }
+                .day-night-mode{
+                    width: 65%;
+                    height: 100%;
+                    display: grid;
+                    grid-template-columns: 0.3fr 0.4fr 0.3fr;
+                    gap: 5px;
+                    background-color: $nightModeBg;
+                    border-radius: 10px;
+                    div{
+                        height: 100%;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        border-radius: 5px;
+                        background-size: 80%;
+                        background-position: center;
+                        background-repeat: no-repeat;
+                        &:hover{
+                            cursor: pointer;
+                            background-color: $nightModeActive;
+                        }
+                    }
+                    #day-mode{
+                        background-image: url(/assets/icons/day-mode.svg);
+                    }
+                    #night-mode{
+                        background-image: url(/assets/icons/night-mode.svg);
+                    }
+                }
+            }
+        }
+    }
+    main{
+        width: 100%;
+        display: grid;
+        grid-template-columns: 75% 25%;
+        padding: 1rem 1rem;
+        .main-info-section, 
+        .daily-info-container-section{
+            grid-column: span 1;
+        }
+        .secondary-info-section{
+            grid-column: span 2;
+            margin-top: 1rem;
+        }
+        .main-info-section{
+            height: 33rem;
+            display: flex;
+            flex-direction: column;
+
+            .main-info-and-description-img{
+                margin-bottom: 1rem;
+                width: 100%;
+                height: 22rem;
+                display: flex;
+                justify-content: space-between;
+                border: 2px solid $containerBorder;
+                border-radius: 1rem;
+                padding: 1rem 2rem;
+                .main-info{
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-evenly;
+                    width: 60%;
+                    height: 100%;
+                    h1{
+                        font-size: 8rem;
+                        font-weight: 600;
+                    }
+                    h2{
+                        font-size: 3rem;
+                    }
+                    h4{
+                        font-size: 1.5rem;
+                    }
+                }
+                .weather-description-img{
+                    display: flex;
+                    justify-content: center;
+                    align-items: flex-start;
+                    overflow: hidden;
+                    width: 40%;
+                    height: 100%;
+                    img{
+                        width: 100%;
+                        height: 90%;
+                        border: none;
+                        outline: none;
+                    }
+                }
+            }
+            .additional-info-container{
+                height: 10rem;
+                display: flex;
+                justify-content: space-between;
+                article{
+                    width: 10rem;
+                    height: 10rem;
+                    display: flex;
+                    align-items: center;
+                    flex-direction: column;
+                    justify-content: center;
+                    border: 2px solid $containerBorder;
+                    border-radius: 1rem;
+                    img{
+                        width: 50%;
+                        height: 50%;
+                    }
+                }
+            }
+        }
+
+        .daily-info-container-section{
+            display: flex;
+            flex-direction: column;
+            margin-left: 1rem;
+            padding: 0.5rem 1rem;
+            border: 2px solid $containerBorder;
+            border-radius: 1rem;
+            overflow: scroll;
+            height: 33rem;
+            .every-day-info{
+                min-height: 4rem;
+                width: 100%;
+                display: grid;
+                grid-template-columns: repeat(2,1fr);
+                grid-template-rows: repeat(2, 1fr);
+                gap: 10px;
+                justify-content: space-between;
+                align-items: center;
+                overflow: hidden;
+                margin-top: 0.5rem;
+                padding: 5px;
+                border: 1px solid $containerBorder;
+                border-radius: 0.5rem;
+                &:nth-child(1){
+                    margin-top: 0;
+                }
+                .everyDay-rain-index{
+                    display: flex;
+                    align-items: center;
+                    img{
+                        width: 20%;
+                    }
+                }
+                .everyDay-day-night-images{
+                    display: flex;
+                    justify-content: space-around; 
+                    img{
+                        width: 20%;
+                    }
+                }
+                .everyDay-degrees{
+                    display: flex;
+                    justify-content: space-around;
+                }
+            }
+        }
+
+        .secondary-info-section{
+            display: flex;
+            flex-direction: column;
+            
+            .per-hour-info-container,
+            .map{
+                padding: 1rem;
+                border: 2px solid $containerBorder;
+                border-radius: 0.5rem;
+            }
+            .per-hour-info-container{
+                width: 100%;
+                display: flex;
+                overflow: scroll;
+                .hour-info{
+                    display: flex;
+                    align-items: center;
+                    flex-direction: column;
+                    justify-content: space-evenly;
+                    margin-left: 1rem;
+                    height: 10rem;
+                    min-height: 10rem;
+                    width: 7rem;
+                    min-width: 7rem;
+                    border: 1px solid $containerBorder;
+                    border-radius: 0.5rem;
+                    &:nth-child(1){
+                        margin: 0;
+                    }
+                    #hour-weather-img{
+                        width: 50%;
+                    }
+                    #hour-rain-index{
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        img{
+                            margin-right: 5px;
+                            width: 1.2rem;
+                        }
+                    }
+                }
+            }
+            .map{
+                margin-top: 1rem;
+                width: 100%;
+                height: 25rem;
+            }
+            .secondary-info{
+                margin-top: 1rem;
+                padding: 0;
+                display: flex;
+                flex-direction: row;
+                >div{
+                    margin-right: 1rem;
+                    width: 7rem;
+                    height: 5rem;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    border: 1px solid $containerBorder;
+                    border-radius: 1rem;
+                }
+            }
+        }
+
+    }
+}
+
+
+@keyframes hideShow{
+    0%{
+        opacity: 0;
+    }
+    50%{
+        opacity: 1;
+    }
+    100%{
+        opacity: 0;
+    }
+}

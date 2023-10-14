@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weathor</title>
+
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <link rel="shortcut icon" href="assets/icons/day-mode.svg" type="image/x-icon">  </head>
+
+<body>
+    <div class="wrapper">
+        <div id="sun-moon-orbit">
+            <div class="sun"></div>
+            <div class="sun-light"></div>
+            <div class="moon"></div>
+            <div class="moon-light"></div>
+        </div>
+        <div class="mountain">
+            <img src="assets/icons/design/mountain.png" alt="">
+        </div>
+        <div class="forest"></div>
+    </div>
+    <div class="effects">
+        <div class="waves"></div>
+        <div class="fog"></div>
+    </div>
+    <div class="wrapper2">
+        <div class="underwater"></div>
+    </div>
+    <div class="container">
+        <header>
+            <nav>
+                <h1>Weathor</h1>
+                <div class="search-wrapper">
+                    <div class="search-input">
+                        <input type="search" value="paris">
+                        <button id="search-button"><img src="assets/icons/search.png" alt=""></button>
+                    </div>
+                    <div id="suggestions-container"></div>
+                </div>
+                <div class="mode-buttons">
+                    <div class="unit-change">
+                        <select name="" id="unit-change-select">
+                            <option value="°C" selected>°C</option>
+                            <option value=" F">F</option>
+                        </select>
+                    </div>
+                    <div class="day-night-mode">
+                        <div id="day-mode"></div>
+                        <div id="auto-mode">auto</div>
+                        <div id="night-mode"></div>
+                    </div>
+                </div>
+            </nav>
+        </header>
+        <main>
+            <section class="main-info-section">
+
+                <article class="main-info-and-description-img">
+                    <div class="main-info">
+                        <h1><span class="temperature-value" id="main-degree">0</span><span class="temperature-scale">°C</span></h1>
+                        <h2 id="city-name">City</h2>
+                        <h4>Feels like: <span class="temperature-value" id="feels-like-degree">0</span><span class="temperature-scale">°C</span>
+                        </h4>
+                        <div>
+                            <p>Last update: <span id="last-update-time">00:00</span></p>
+                        </div>
+                        <div>
+                            <p>Now: <span id="time-now">00:00</span></p>
+                        </div>
+                    </div>
+                    <div class="weather-description-img">
+                        <img src="assets/icons/404.png" alt="">
+                    </div>
+                </article>
+
+                <div class="additional-info-container">
+                    <article class="humidity">
+                        <img src="assets/icons/humidity.png" alt="Humidity img">
+                        <h4>Humidity</h4>
+                        <p><span id="humidity-value">0</span>%</p>
+                    </article>
+                    <article class="wind">
+                        <img src="assets/icons/wind.png" alt="Wind img">
+                        <h4>Wind</h4>
+                        <p><span id="wind-speed">0</span><span id="speed-units">m/s</span></p>
+                    </article>
+                    <article class="sunrise">
+                        <img src="/assets/icons/sunset-sunrise/sunrise-light_large.png" alt="sunrise img">
+                        <h4>Sunrise</h4>
+                        <p>00:00</p>
+                    </article>
+                    <article class="sunset">
+                        <img src="/assets/icons/sunset-sunrise/sunset-light_large.png" alt="sunrise-img">
+                        <h4>Sunset</h4>
+                        <p>00:00</p>
+                    </article>
+                </div>
+
+            </section>
+
+            <aside class="daily-info-container-section">
+                <div class="every-day-info">
+                    <div id="everyDay-name">
+                        <p>Today</p>
+                    </div>
+                    <div class="everyDay-day-night-images">
+                        <img id="day-img" src="assets/icons/404.png" alt="day">
+                        <img id="night-img" src="assets/icons/404.png" alt="night">
+                    </div>
+                    <div class="everyDay-rain-index">
+                        <img src="assets/icons/humidity.png" alt="">
+                        <p>0%</p>
+                    </div>
+                    <div class="everyDay-degrees">
+                        <p><span class="allDegree" id="day-degree">0</span><span class="temperature-scale">°C</span></p>
+                        <p><span class="allDegree" id="night-degree">0</span><span class="temperature-scale">°C</span></p>
+                    </div>
+                </div>
+                <!-- ... -->
+            </aside>
+            <section class="secondary-info-section">
+                <div class="per-hour-info-container">
+
+                    <div class="hour-info">
+                        <h4 id="hour">12:00</h4>
+                        <img id="hour-weather-img" src="assets/icons/404.png" alt="hour-img">
+                        <h4><span class="temperature-value">0</span><span id="temperature-scale">°C</span></h4>
+                        <div id="hour-rain-index">
+                            <img src="assets/icons/humidity.png" alt="">
+                            <p id="hour-rain-index">0%</p>
+                        </div>
+                    </div>
+                    <!-- ... -->
+                </div>
+                <div class="secondary-info">
+                    <div id="visibility">
+                        <h4>Visibility:</h4>
+                        <p>...</p>
+                    </div>
+                    <div id="wind-degree">
+                        <h4>Wind Degree:</h4>
+                        <p>...</p>
+                    </div>
+                    <div id="pressure">
+                        <h4>Pressure:</h4>
+                        <p>...</p>
+                    </div>
+                </div>
+                <div class="map">
+                    <div id="map" style="width: 100%; height: 100%;"></div>
+                </div>
+            </section>
+        </main>
+
+    </div>
+
+    <script src="assets/javascript/script.js"></script>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+</body>
+
+</html>
