@@ -1,6 +1,5 @@
-import myAxios from "./unsplashAxios";
-const apiKey = process.env.NEXT_PUBLIC_OPENWEATHERMAP_API_KEY
-
+import myAxios from "./unsplashAxios"
+const apiKey = process.env.NEXT_PUBLIC_UNSPLASH_API_KEY
 
 export const getImage = async (city) => {
   const response = await myAxios.get(

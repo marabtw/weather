@@ -8,18 +8,23 @@ import SearchCity from "./SearchCity"
 const MainWeather = React.memo(({ weatherData, updateWeatherData }) => {
   const [imageUrl, setImageUrl] = useState()
 
-  useEffect(() => {
-    // getImage(weatherData.name)
-    //   .then((data) =>
-    //     setImageUrl(
-    //       data.results[Math.floor(Math.random() * (data.results.length - 1))]
-    //         .urls.raw
-    //     )
-    //   )
-    //   .catch((error) => {
-    //     console.log(error)
-    //   })
-  }, [weatherData])
+  // useEffect(() => {
+  //   weatherData &&
+  //     getImage(weatherData?.name)
+  //       .then((data) => {
+  //         setImageUrl(
+  //           data.results[Math.floor(Math.random() * (data.results.length - 1))]
+  //             .urls.raw
+  //         )
+  //       })
+  //       .catch((error) => {
+  //         console.log(error)
+  //       })
+  // }, [weatherData])
+
+	useEffect(() =>{
+		setImageUrl("https://images.unsplash.com/photo-1522093007474-d86e9bf7ba6f?ixid=M3w1NzA1NzV8MHwxfHNlYXJjaHwyfHxQYXJpc3xlbnwwfHx8fDE3MDg4OTU2MDV8MA&ixlib=rb-4.0.3")
+	},[weatherData])
 
   return (
     <div className="relative px-[50px] pt-[50px] pb-[25px] w-full">
@@ -33,12 +38,16 @@ const MainWeather = React.memo(({ weatherData, updateWeatherData }) => {
           <div
             style={
               weatherData?.weather?.[0]?.icon
-                ? { backgroundImage: `url(${`https://openweathermap.org/img/wn/${weatherData.weather[0].icon}.png`})` }
+                ? {
+                    backgroundImage: `url(${`https://openweathermap.org/img/wn/${weatherData.weather[0].icon}.png`})`,
+                  }
                 : { backgroundImage: "url(/cloud.png)" }
             }
             className="h-[60%] aspect-square bg-cover bg-no-repeat bg-center"
           ></div>
-          <p className="text-[1.1rem] leading-[.7rem]">{weatherData?.weather?.[0]?.main}</p>
+          <p className="text-[1.1rem] leading-[.7rem]">
+            {weatherData?.weather?.[0]?.main}
+          </p>
         </div>
         <div
           className=" w-full h-[50%] flex justify-center items-center bg-[#818cf8] rounded-br-[30px]
@@ -47,7 +56,7 @@ const MainWeather = React.memo(({ weatherData, updateWeatherData }) => {
 				"
         >
           <h5 className="relative text-[2rem] flex">
-            {(weatherData?.main.temp)}
+            {weatherData?.main.temp}
             <span className="block text-[1.2rem] relative top-0">°C</span>
           </h5>
         </div>
