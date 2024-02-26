@@ -8,19 +8,19 @@ import SearchCity from "./SearchCity"
 const MainWeather = React.memo(({ weatherData, updateWeatherData }) => {
   const [imageUrl, setImageUrl] = useState()
 
-  // useEffect(() => {
-  //   weatherData &&
-  //     getImage(weatherData?.name)
-  //       .then((data) => {
-  //         setImageUrl(
-  //           data.results[Math.floor(Math.random() * (data.results.length - 1))]
-  //             .urls.raw
-  //         )
-  //       })
-  //       .catch((error) => {
-  //         console.log(error)
-  //       })
-  // }, [weatherData])
+  useEffect(() => {
+    weatherData &&
+      getImage(weatherData?.name)
+        .then((data) => {
+          setImageUrl(
+            data.results[Math.floor(Math.random() * (data.results.length - 1))]
+              .urls.raw
+          )
+        })
+        .catch((error) => {
+          console.log(error)
+        })
+  }, [weatherData])
 
 	useEffect(() =>{
 		setImageUrl("https://images.unsplash.com/photo-1522093007474-d86e9bf7ba6f?ixid=M3w1NzA1NzV8MHwxfHNlYXJjaHwyfHxQYXJpc3xlbnwwfHx8fDE3MDg4OTU2MDV8MA&ixlib=rb-4.0.3")

@@ -2,7 +2,7 @@ import Link from "next/link"
 
 const NavBar = () => {
   return (
-    <main className="flex text-white px-[50px] py-[10px] bg-[#121736] justify-between items-center">
+    <header className="flex text-white px-[50px] py-[10px] bg-[#121736] justify-between items-center">
       <h1 className="text-[1.5rem]">Weather</h1>
       <ul className="flex gap-[10px] items-center relative">
         <Link
@@ -22,7 +22,7 @@ const NavBar = () => {
           Settings
         </Link>
       </ul>
-    </main>
+    </header>
   )
 }
 

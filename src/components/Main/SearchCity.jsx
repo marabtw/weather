@@ -51,6 +51,7 @@ const SearchCity = ({ updateWeatherData }) => {
         setSelectedItemId(null)
       } else if (event.key === "Enter") {
         saveHistory(
+          citiesData[currentIndex].id,
           citiesData[currentIndex].coord.lat,
           citiesData[currentIndex].coord.lon,
           citiesData[currentIndex].name,
@@ -71,15 +72,11 @@ const SearchCity = ({ updateWeatherData }) => {
   }, [citiesData, selectedItemId])
 
   const saveHistory = (id, lat, lon, name, country) => {
-    if (
-      history.length > 0 &&
-      history[history.length - 1].lat === lat &&
-      history[history.length - 1].lon === lon
-    ) {
+    if (history.length > 0 && history[history.length - 1].id === id) {
       return
     }
     const newEntry = {
-			id,
+      id,
       lat,
       lon,
       name,
@@ -114,8 +111,13 @@ const SearchCity = ({ updateWeatherData }) => {
   }
 
   const handleItemClick = (data) => {
-		console.log(data)
-    saveHistory(data.id, data.coord.lat, data.coord.lon, data.name, data.sys.country)
+    saveHistory(
+      data.id,
+      data.coord.lat,
+      data.coord.lon,
+      data.name,
+      data.sys.country
+    )
     updateWeatherData(data.coord.lat, data.coord.lon)
     setCitiesData([])
     setSelectedItemId(null)
